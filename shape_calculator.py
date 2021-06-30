@@ -1,7 +1,7 @@
 class Rectangle:
-    def __init__(self, height, width) -> None:
-        self.set_height(width)
-        self.set_width(height)
+    def __init__(self, width, height) -> None:
+        self.width = width
+        self.height = height
 
 
     def set_width(self, width: int) -> None:
@@ -20,7 +20,7 @@ class Rectangle:
         return 2 * self.width + 2 * self.height
 
 
-    def get_diagonal(self) -> int:
+    def get_diagonal(self) -> float:
         return (self.width ** 2 + self.height ** 2) ** .5
 
 
@@ -49,29 +49,22 @@ class Rectangle:
 
 class Square(Rectangle):
     def __init__(self, side) -> None:
-        self.width = side
-        self.height = side
+        super().__init__(side, side)
 
 
     def set_side(self, side) -> None:
-        self.set_height(side)
-        self.set_width(side)
+        self.width = side
+        self.height = side
 
     
     def set_width(self, width) -> None:
-        self.width = width
-        self.height = width
+        self.set_side(width)
 
     
     def set_height(self, height) -> None:
-        self.width = height
-        self.height = height
+        self.set_side(height)
 
     
     def __str__(self) -> str:
         return '{}(side={})'.format(self.__class__.__name__,
                                     str(self.width))
-
-
-rect = Rectangle(5, 10)
-print(rect.get_picture())
